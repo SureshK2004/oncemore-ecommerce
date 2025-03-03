@@ -1,0 +1,21 @@
+{% extends 'shop/layouts/main.html' %}
+{% block title %}
+Once More | Online Shopping 
+{% endblock title%}
+
+
+{% block content %}
+<section class="bg-light py-4 my-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h4 class="mb-3">Products</h4>
+                <hr style="border-color: rgb(66, 65, 65);">
+            </div>
+            {{Products}}
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}
