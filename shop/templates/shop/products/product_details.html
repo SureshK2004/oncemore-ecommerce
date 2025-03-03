@@ -1,18 +1,36 @@
 {% extends 'shop/layouts/main.html' %}
 {% block title %}
-Once More | Online Shopping 
+Once More | Online Shopping
 {% endblock title%}
 
 
 {% block content %}
-<section class="bg-light py-4 my-5">
+<section class="bg-light py-4 my-5" style="min-height: 600px;">
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h4 class="mb-3">Products</h4>
+                <h4 class="mb-3">{{products}} details</h4>
                 <hr style="border-color: rgb(66, 65, 65);">
             </div>
-            {{Products}}
+            <div class="col-4 my-3">
+                <img src="{{ products.product_image.url }}" class="card-img-top" alt="{{products}}">
+            </div>
+            <div class="col-8 my-3">
+                <h5 class="text-success">Men's Fashion Spot</h5>
+                <p>{{products.vendor|upper}}</p>
+                <p>{{products.description}}</p>
+               <div class="col-5">
+                <button class="btn btn-dark">S</button>
+                <button class="btn btn-dark">M</button>
+                <button class="btn btn-dark">L</button>
+                <button class="btn btn-dark">XL</button>
+                <button class="btn btn-dark">XXL</button> 
+               </div>
+                <h5 class="my-2">Rs.{{ products.original_price }}</h5>
+                <button class="btn btn-primary"><i class="fa fa-cart"></i>Add to Cart</button>
+                <button class="btn btn-danger"><i class="fa fa-heart"></i>Add to Cart</button>
+
+            </div>
         </div>
     </div>
 </section>
