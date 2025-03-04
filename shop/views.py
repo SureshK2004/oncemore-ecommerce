@@ -1,13 +1,16 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import Category,Products
 from django.contrib import messages
+from shop.form import CustomUserForm
 
 # Create your views here.
 def home(request):
-    return render(request, "shop/index.html")
+     products = Products.objects.filter(trending=1)
+     return render(request, "shop/index.html",{"products":products})
 
 def register(request):
-    return render(request, "shop/register.html")
+    form=CustomUserForm()
+    return render(request, "shop/register.html",{'form':form})
 
 def login(request):
     return render(request, "shop/login.html")

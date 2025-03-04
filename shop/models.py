@@ -1,5 +1,7 @@
+#from itertools import product
 from django.db import models
-from datetime import datetime
+from django.contrib.auth.models import User
+import datetime
 import os
 
 def getFilename(request, filename):
@@ -25,6 +27,7 @@ class Products(models.Model):
     vendor=models.CharField(max_length=100,null=False,blank=False)
     product_image=models.ImageField(upload_to=getFilename,null=True,blank=True)
     quantity=models.IntegerField(null=False,blank=False)
+    sizes = models.CharField(max_length=255, null=True, blank=True, help_text="Enter sizes separated by commas (e.g., S, M, L, XL)")  
     original_price=models.FloatField(null=False,blank=False)
     description=models.TextField(max_length=500,null=False,blank=False)
     status=models.BooleanField(default=False,help_text="0-show,1-Hidden")
@@ -34,3 +37,5 @@ class Products(models.Model):
 
     def __str__(self):
         return self.name
+    
+   

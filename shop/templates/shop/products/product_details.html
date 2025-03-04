@@ -5,31 +5,65 @@ Once More | Online Shopping
 
 
 {% block content %}
+<style>
+    .pic-box{
+    position: relative;
+}
+.hi{
+    background-color: orangered !important;
+    color: white;
+    font-weight: bold;
+    display: inline;
+    border-radius: 10px;
+    padding: 6px;
+    position: absolute;
+    top: 0;
+    right: 20px;
+    z-index: 10;
+    width: 80px;
+    text-align: center;
+}
+</style>
 <section class="bg-light py-4 my-5" style="min-height: 600px;">
     <div class="container">
         <div class="row">
             <div class="col-12">
                 <h4 class="mb-3">{{products}} details</h4>
                 <hr style="border-color: rgb(66, 65, 65);">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="{% url 'collection' products.category.name  %}">Collections</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">{{products}}</li>
+                    </ol>
+                  </nav>
             </div>
-            <div class="col-4 my-3">
-                <img src="{{ products.product_image.url }}" class="card-img-top" alt="{{products}}">
+            <div class="col-4 my-3 pic-box">
+                {% if products.trending %}
+                <div class="hi">Trending</div>
+                {% endif %}
+                <img src="{{ products.product_image.url }}" class="card-img-top" alt="{{products}}" >
             </div>
             <div class="col-8 my-3">
-                <h5 class="text-success">Men's Fashion Spot</h5>
+                <h5 class="text-danger">Men's Fashion Spot</h5>
                 <p>{{products.vendor|upper}}</p>
                 <p>{{products.description}}</p>
-               <div class="col-5">
-                <button class="btn btn-dark">S</button>
-                <button class="btn btn-dark">M</button>
-                <button class="btn btn-dark">L</button>
-                <button class="btn btn-dark">XL</button>
-                <button class="btn btn-dark">XXL</button> 
-               </div>
-                <h5 class="my-2">Rs.{{ products.original_price }}</h5>
-                <button class="btn btn-primary"><i class="fa fa-cart"></i>Add to Cart</button>
-                <button class="btn btn-danger"><i class="fa fa-heart"></i>Add to Cart</button>
+                
 
+               <div class="col-5 mt-4">
+                <button class="btn btn-dark ">S</button>
+                <button class="btn btn-dark mx-2">M</button>
+                <button class="btn btn-dark mx-2">L</button>
+                <button class="btn btn-dark mx-2">XL</button>
+                <button class="btn btn-dark mx-2">XXL</button> 
+               </div>
+                <h5 class="mt-4 text-success">Rs.{{ products.original_price }}</h5>
+                {% if products.quantity > 0 %}
+                <button class="btn btn-primary my-2"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                {% else %}
+                <button class="btn btn-success my-2"><i class="fa fa-minus"></i> Out of Stock</button>
+                {% endif %}
+                <button class="btn btn-danger mx-5 my-2"><i class="fa fa-heart"></i></button>  
             </div>
         </div>
     </div>

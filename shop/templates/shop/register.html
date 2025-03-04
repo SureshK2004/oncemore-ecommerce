@@ -7,8 +7,38 @@ Registration | oncemore-online Shopping hub
     <div class="row">
         <div class="col-12">
             <h1>Register page</h1>
+            <hr style="border-color: rgb(48, 47, 47);">
         </div>
     </div>
+    <section class="py-4 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                        <label for="" class="form-label">Username</label>
+                            {{form.username}}
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="form-lable">Email</label>
+                            {{form.email}}
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="form-label">Password</label>
+                            {{form.password1}}
+                        </div>
+                        <div class="mb-4">
+                            <label for="" class="form-label">Confirm Password</label>
+                            {{form.password2}}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </form>
+                    <p class="my-2">Already User ?<a href="">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
 </div>
 
