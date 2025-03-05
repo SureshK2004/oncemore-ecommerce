@@ -8,6 +8,7 @@ Registration | oncemore-online Shopping hub
         <div class="col-12">
             <h1>Register page</h1>
             <hr style="border-color: rgb(48, 47, 47);">
+            {% include 'shop/inc/message.html' %}
         </div>
     </div>
     <section class="py-4 my-5">
@@ -17,24 +18,49 @@ Registration | oncemore-online Shopping hub
                     <form action="" method="post">
                         {% csrf_token %}
                         <div class="mb-4">
-                        <label for="" class="form-label">Username</label>
+                            <label for="" class="form-label">Username</label>
                             {{form.username}}
+
                         </div>
                         <div class="mb-4">
                             <label for="" class="form-lable">Email</label>
                             {{form.email}}
+
                         </div>
                         <div class="mb-4">
                             <label for="" class="form-label">Password</label>
                             {{form.password1}}
+
                         </div>
                         <div class="mb-4">
                             <label for="" class="form-label">Confirm Password</label>
                             {{form.password2}}
+
                         </div>
                         <button type="submit" class="btn btn-primary">Register</button>
                     </form>
-                    <p class="my-2">Already User ?<a href="">Login</a></p>
+                    <p class="my-2">Already User ?<a href="{% url 'login' %}">Login</a></p>
+                </div>
+                <div class="col-6">
+
+                    {% if form.errors.username %}
+                    <label for="" class="text-danger d-block">{{ form.errors.username }}</label>
+                    {% endif %}
+
+
+                    {% if form.errors.email %}
+                    <label for="" class="text-danger d-block">{{ form.errors.email }}</label>
+                    {% endif %}
+
+
+                    {% if form.errors.password1 %}
+                    <label for="" class="text-danger d-block">{{ form.errors.password1 }}</label>
+                    {% endif %}
+
+                    {% if form.errors.password2 %}
+                    <label for="" class="text-danger d-block">{{ form.errors.password2 }}</label>
+                    {% endif %}
+
                 </div>
             </div>
         </div>
