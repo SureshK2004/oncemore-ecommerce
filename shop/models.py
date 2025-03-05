@@ -2,10 +2,11 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from datetime import datetime
 import os
 
 def getFilename(request, filename):
-    now_time = datetime.now().strftime("%Y%m%d%H%M%S")  # Corrected time format
+    now_time = datetime.now().strftime("%Y%m%d%H%M%S")   # Corrected time format
     new_filename = f"{now_time}_{filename}"  # Using f-string for better readability
     return os.path.join('uploads/', new_filename)
 
