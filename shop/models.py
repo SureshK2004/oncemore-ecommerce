@@ -39,4 +39,11 @@ class Products(models.Model):
     def __str__(self):
         return self.name
     
-   
+class Cart(models.Model):  # Use PascalCase for model names
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product_qty = models.IntegerField(null=False, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.product.name}"

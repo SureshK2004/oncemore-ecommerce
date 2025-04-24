@@ -60,7 +60,16 @@ Once More | Online Shopping
                </div>
                 <h5 class="mt-4 text-success">Rs.{{ products.original_price }}</h5>
                 {% if products.quantity > 0 %}
-                <button class="btn btn-primary my-2"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                <input type="hidden" id="pid" value="{{products.id}}">
+                {% csrf_token %}
+            <p>
+                <div class="input-group" style="width: 150px;">
+                    <button class="input-group-text bg-success text-light" id="btnminus"><i class="fa fa-minus"></i></button>
+                    <input type="text" name="qty" id="txtQty"  value="1" class="form-control text-center">
+                    <button class="input-group-text bg-success text-light" id="btnplus"><i class="fa fa-plus"></i></button>
+                </div>
+            </p>
+                <button class="btn btn-primary my-2" id="btnCart"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                 {% else %}
                 <button class="btn btn-success my-2"><i class="fa fa-minus"></i> Out of Stock</button>
                 {% endif %}
@@ -70,5 +79,48 @@ Once More | Online Shopping
     </div>
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+    const btnminus = document.getElementById('btnminus');
+    const btnplus = document.getElementById('btnplus');
+    const txtQty = document.getElementById('txtQty');
+    const pid=document.getElementById('pid');
+    const tkn=document.querySelector('[name="csrfmiddlewaretoken"]').value;
+    const btnCart=document.getElementById('btnCart');
 
+    btnplus.addEventListener("click", function() {
+        let qty = parseInt(txtQty.value, 10);
+        qty = isNaN(qty) ? 0 : qty;
+        //console.log(qty)
+        if (qty < 10) {
+            qty++;
+            txtQty.value = qty;
+        }
+    });
+
+    btnminus.addEventListener("click", function() {
+        let qty = parseInt(txtQty.value, 10);
+        qty = isNaN(qty) ? 0 : qty;
+        //console.log(qty)
+        if (qty > 1) {
+            qty--;
+            txtQty.value = qty;
+        }
+    });
+    btnCart.addEventListener("click", function(){
+        let qty=parseInt(txtQty.value,10);
+        qty=isNaN(qty) ?0:qty;
+        if(qty>0){
+            let postobj={
+                product_qty:qty,
+                pid:pid.value,
+                token:tkn
+            }
+        }else{
+            alert("Please Quantity Konjam Enter Pannuga...");
+        }
+    });
+});
+
+</script>
 {% endblock content %}

@@ -90,3 +90,6 @@ def product_details(request, cname, pname):
     else:
         messages.error(request, "No such category found")
         return redirect("collection")
+    
+
+    

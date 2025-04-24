@@ -8,6 +8,7 @@ urlpatterns=[
     path('logout/', views.logout_page, name='logout'),
     path("collections/",views.collection,name="collection"),
     path('collections/<str:name>', views.collectionview, name='collection'),
-    path('collections/<str:cname>/<str:pname>', views.product_details, name='product_details'),  
+    path('collections/<str:cname>/<str:pname>', views.product_details, name='product_details'), 
+     #path('add-to-cart/', add_to_cart, name='add_to_cart'), 
 ]
 
